@@ -1,9 +1,8 @@
 import React from 'react';
+import Locations from './pages/Locations';
 
-function App() {
-  return (
-    <div>null</div>
-  );
-}
+const App = () => (
+  <Locations />
+);
 
 export default App;

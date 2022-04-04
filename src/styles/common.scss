@@ -1,0 +1,17 @@
+body {
+  font-family: -apple-system, Arial, sans-serif, BlinkMacSystemFont, Segoe UI, Noto Sans, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-kerning: auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6875;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #FFF;
+  background-color: #000;
+  overflow-x: hidden;
+  min-width: 320px;
+  transition: background-color .2s cubic-bezier(.85, 0, .15, 1), color .2s cubic-bezier(.85, 0, .15, 1);
+}

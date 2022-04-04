@@ -2,16 +2,20 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 const { resolve } = require('path');
 
 const SRC_DIR = resolve(__dirname, './src');
+const DIST_DIR = resolve(__dirname, './dist');
+
 const environment = process.env.NODE_ENV || 'development';
 const development = environment === 'development';
-const DIST_DIR = resolve(__dirname, './dist');
+const API = 'api';
+const BACKEND_URL = 'https://dev-api.confidence.org/v2/confidence';
 
 module.exports = {
   context: SRC_DIR,
-  mode: 'development',
+  mode: environment,
   devtool: 'source-map',
 
   resolve: {
@@ -61,7 +65,7 @@ module.exports = {
         use: [
           { loader: development ? 'style-loader' : MiniCssExtractPlugin.loader },
           { loader: 'css-loader', options: { sourceMap: false, importLoaders: 3 } },
-          { loader: 'postcss-loader', options: { sourceMap: 'inline' } },
+          { loader: 'postcss-loader' },
           { loader: 'resolve-url-loader' },
           { loader: 'sass-loader', options: { sourceMap: true } },
         ],
@@ -104,5 +108,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
     }),
+
+    new webpack.DefinePlugin({
+      // 'process.env.NODE_ENV': JSON.stringify(environment),
+      'process.env.API': JSON.stringify(API),
+      'process.env.BACKEND_URL': JSON.stringify(BACKEND_URL),
+    }),
   ],
+
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'https://dev-api.confidence.org/v2/confidence',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: { '/api': '' },
+      },
+    },
+  },
 };

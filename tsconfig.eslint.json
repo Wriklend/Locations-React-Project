@@ -3,7 +3,8 @@
   "include": [
     "src",
     ".eslintrc.js",
-    "webpack.config.js"
+    "webpack.config.js",
+    "babel.config.js"
   ],
   "exclude": [
     "node_modules"
