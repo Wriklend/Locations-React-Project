@@ -24,10 +24,11 @@
       padding: 40px 15px;
       width: calc(100% / 3 - 5px);
       background-color: #3d5afe;
-      transition: border-radius ease-in-out .3s;
+      transition: border-radius ease-in-out .3s, background-color ease-in-out .3s;
 
       &:hover {
         border-radius: 20px;
+        background-color: mix(#3d5afe, red, 95%);
       }
 
       .card-section {

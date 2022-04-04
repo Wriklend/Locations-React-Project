@@ -29,9 +29,13 @@ describe('fetchLocations', () => {
       json: () => Promise.resolve(fakeLocations)
     }));
 
+    let component = null;
     await act(async () => {
-      create(<Locations />);
+      component = create(<Locations />);
     });
+
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 
     expect(fetch).toBeCalledTimes(1)
   })
